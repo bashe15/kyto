@@ -13,6 +13,10 @@ Berlin, 24.06.2018, by Jovan Bojchevski for Kyto.
 
 Change to the project directory and run `composer install`.
 
+Copy the .env.example into .env using the following command `cp .env.example .env`.
+
+Run the following command to generate new application key `php artisan key:generate`. 
+
 ## Implementation
 
 The implementation uses the Laravel 5.6 `framework-bundle`
