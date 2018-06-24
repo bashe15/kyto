@@ -2,7 +2,7 @@
 
 namespace App\Figures;
 
-class Triangle implements Figure
+class Triangle extends Figure
 {
 	/**
 	 * Triangle constructor.

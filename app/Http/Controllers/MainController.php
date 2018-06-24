@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Figures\Square;
 use App\Figures\Triangle;
-use App\Helpers\Math;
 
 class MainController extends Controller
 {
@@ -18,11 +16,15 @@ class MainController extends Controller
 	public function getTriangle($startNumber = null, $numberFigures = null)
 	{
 		$figure = new Triangle();
-		$this->getFinalFigure($figure, $startNumber, $numberFigures);
+		$allFigures = $figure->getFinalFigure($startNumber, $numberFigures);
+
+		foreach ($allFigures as $figure) {
+			$this->convertArrayToString($figure);
+		}
 	}
 
 	/**
-	 * @function Getting a list of primer numbers , but always must be provided start number and how many numbers
+	 * Connection to the Square and getting all the figures ready for printing
 	 *
 	 * @param $startNumber
 	 * @param $numberFigures
@@ -30,28 +32,18 @@ class MainController extends Controller
 	public function getSquare($startNumber = null, $numberFigures = null)
 	{
 		$figure = new Square();
-		$this->getFinalFigure($figure, $startNumber, $numberFigures);
-	}
+		$allFigures = $figure->getFinalFigure($startNumber, $numberFigures);
 
-	private function getFinalFigure($obj, $startNumber = null, $numberFigures = null)
-	{
-		if (empty($startNumber)) {
-			$startNumber = 5;
-		}
-
-		if (empty($numberFigures)) {
-			$numberFigures = 3;
-		}
-
-		$rangeFigures = Math::getPrimeNumbers($startNumber, $numberFigures);
-		$primeNumbers = Math::getPrimeNumbers(0, end($rangeFigures));
-
-		for($i=0; $i<count($rangeFigures); $i++){
-			$finalFigure = $obj->getFigure($rangeFigures[$i], $primeNumbers);
-			$this->convertArrayToString($finalFigure);
+		foreach ($allFigures as $figure) {
+			$this->convertArrayToString($figure);
 		}
 	}
 
+	/**
+	 * Print figure into the browser
+	 *
+	 * @param $matrix
+	 */
 	private function convertArrayToString($matrix){
 		foreach($matrix as $key => $line){
 			$printLine = implode("", $line);

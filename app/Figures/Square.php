@@ -2,7 +2,7 @@
 
 namespace App\Figures;
 
-class Square implements Figure
+class Square extends Figure
 {
 	/**
 	 * Square constructor.
