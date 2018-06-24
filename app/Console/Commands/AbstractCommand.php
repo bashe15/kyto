@@ -8,6 +8,8 @@
 
 namespace App\Console\Commands;
 
+use App\Exceptions\InvalidNumberFigures;
+use App\Exceptions\InvalidStartNumber;
 use App\Figures\Square as SquareFigure;
 use App\Figures\Triangle as TriangleFigure;
 use App\Helpers\Math;
@@ -52,7 +54,8 @@ class AbstractCommand extends Command
 	/**
 	 * Execute the console command.
 	 *
-	 * @return mixed
+	 * @throws InvalidStartNumber
+	 * @throws InvalidNumberFigures
 	 */
 	public function handle()
 	{
@@ -63,8 +66,16 @@ class AbstractCommand extends Command
 			$startNumber = 5;
 		}
 
+		if ((!is_numeric($startNumber) && !is_null($startNumber)) || ($startNumber < 0)) {
+			throw new InvalidStartNumber();
+		}
+
 		if( empty($numberFigures) ) {
 			$numberFigures = 3;
+		}
+
+		if ((!is_numeric($numberFigures) && !is_null($numberFigures)) || ($numberFigures < 0)) {
+			throw new InvalidNumberFigures();
 		}
 
 		$rangeFigures = Math::getPrimeNumbers($startNumber, $numberFigures);

@@ -17,5 +17,5 @@ Route::get('/', function () {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
 	$router->get('square/{startNumber?}/{numberFigures?}', ['uses' => 'MainController@getSquare']);
-	$router->get('triangle/{startNumber}/{numberFigures?}', ['uses' => 'MainController@getTriangle']);
+	$router->get('triangle/{startNumber?}/{numberFigures?}', ['uses' => 'MainController@getTriangle']);
 });
