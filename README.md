@@ -1,4 +1,4 @@
-# Cash Machine
+# Kyto Developer Task
 
 API that processes a transaction and returns a receipt with the result.
 
