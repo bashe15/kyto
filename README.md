@@ -7,6 +7,7 @@ Berlin, 24.06.2018, by Jovan Bojchevski for Kyto.
 ## Requirements
 
 - PHP >= 7.1.3
+- enable GMP extension
 - composer
 
 ## Setup
@@ -15,7 +16,7 @@ Change to the project directory and run `composer install`.
 
 Copy the .env.example into .env using the following command `cp .env.example .env`.
 
-Run the following command to generate new application key `php artisan key:generate`. 
+Run the following command to generate new application key `php artisan key:generate`.
 
 ## Implementation
 
